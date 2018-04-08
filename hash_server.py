@@ -92,7 +92,7 @@ class Proxy:
 
         sample_num = 10
         content= msg[0]
-        zipcode, temperature, relhumidity, ownership, history = content.split(" ")
+        zipcode, temperature, relhumidity, ownership, history, pub_time = content.split(" ")
 
         ownership = int(ownership.decode('ascii'))
         history = int(history.decode('ascii'))
@@ -151,7 +151,7 @@ class Proxy:
             if self.xsubsocket in events:
                 msg = self.xsubsocket.recv_multipart()
                 content= msg[0]
-                zipcode, temperature, relhumidity, ownership, history = content.split(" ")
+                zipcode, temperature, relhumidity, ownership, history, pub_time = content.split(" ")
                 
                 if zipcode not in zip_list: # a new topic just come from a new publisher
                     zip_list.append(zipcode)
